@@ -17,12 +17,14 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
         if (Input.GetButtonDown("Fire1") && canAttack)
+        {
+            Debug.Log("Attack!");
             StartCoroutine(DoAttack());
+        }
     }
 
     IEnumerator DoAttack()
     {
-        Console.WriteLine("Attacking");
         canAttack = false;
         //anim.SetTrigger("Attack");  // Trigger attack animation
 
@@ -31,10 +33,8 @@ public class PlayerAttack : MonoBehaviour
 
         yield return new WaitForSeconds(activeTime);
         hitbox.SetActive(false);
-        Console.WriteLine("CD");
 
         yield return new WaitForSeconds(cooldown);
         canAttack = true;
-        Console.WriteLine("Finished");
     }
 }
